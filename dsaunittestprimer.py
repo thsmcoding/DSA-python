@@ -1,8 +1,8 @@
 import unittest as ut
 import unittest.mock
 from math import factorial
-from primermodule import rd, finding_number, permutations
-
+import monetary
+from primermodule import *
 
 class DSATestMethods(ut.TestCase):
     def test_finding_number_success(self):
@@ -32,8 +32,9 @@ class DSATestMethods(ut.TestCase):
             finding_number(self.size,self.inputlist)
         self.assertEqual(str(exception_context.exception),
                          "The list is empty or None.")
-        
-    def test_permuations(self):
+
+        '''
+    def test_permutations(self):
         print("TESTING PERMUTATIONS FOR 0 CHARACTERS:")
         self.l= []
         self.n= len(self.l)
@@ -42,7 +43,7 @@ class DSATestMethods(ut.TestCase):
         actual, expected =0,self.count[0]
         self.assertEqual(actual, expected)
 
-    def test_permuations(self):
+    def test_permutations(self):
         print("TESTING PERMUTATIONS FOR MULTIPLE CHARACTERS: \n")
         self.l= ['C','A','T', 'D', 'O', 'G']
         self.n= len(self.l)
@@ -51,6 +52,28 @@ class DSATestMethods(ut.TestCase):
         print("Search has found "+ str(self.count[0])+ " permutations")
         actual, expected= self.count[0], factorial(self.n)
         self.assertEqual(actual, expected)
+'''
+    def test_rec_count_div(self):
+        print("######## TESTING NUMBER OF DIVISIONS BY 2 - RECURSIVE ##### \n")
+        self.n=10
+        self.l=[0]
+        rec_count_div(self.n, self.l)
+        actual, expected= self.l[0], 3
+        self.assertEqual(actual, expected)
+
+    def test_ite_count_div(self):
+        print("######## TESTING NUMBER OF DIVISIONS BY 2 - ITERATIVE ### \n")
+        self.n=2
+        self.l=[0]
+        ite_count_div(self.n, self.l)
+        actual, expected= self.l[0], 1
+        self.assertEqual(actual, expected)
         
+    def test_compute_change(self):
+        self.charged=150.82
+        self.received=160
+        monetary.compute_change(self.charged, self.received)
+        
+
 if __name__== '__main__':
     ut.main()
