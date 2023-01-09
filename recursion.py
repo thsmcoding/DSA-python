@@ -11,14 +11,17 @@ Created on Jan  2 08:22:37 2023
 
 def displayAllSubsets(l, used):
     if l is None:
-       print("{}")
-       return 
+        return
+    elif len(l)==0:
+        print("{}") 
+        used.append([])
+        return
     else:
         used.append([u for u in l])
         print(str(l).replace(']', '}').replace('[', '{'))            
         for i in range(len(l)-1, -1,-1):
             removed=l[i]
-            l=[l[u] for u in range(len(l)) if not u==i]   
+            l.pop(i)
             if not l in used:
                 displayAllSubsets(l, used)
             l.insert(i,removed)       
